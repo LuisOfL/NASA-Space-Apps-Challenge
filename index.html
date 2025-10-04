@@ -257,20 +257,18 @@
             const modal = document.getElementById('materialModal');
             const body = document.body;
             
-            // Ocultar el modal
+           
             modal.style.display = 'none';
-            
-            // Remover la clase que deshabilita el scroll
+      
             body.classList.remove('modal-open');
             
-            // Restaurar la posición del scroll
             window.scrollTo(0, scrollPosition);
             
-            // Remover el estilo de posición
+           
             body.style.top = '';
         }
 
-        // Cerrar modal al hacer click fuera del contenido
+      
         window.onclick = function(event) {
             const modal = document.getElementById('materialModal');
             if (event.target === modal) {
@@ -278,14 +276,13 @@
             }
         }
 
-        // Cerrar modal con tecla ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeMaterialModal();
             }
         });
 
-        // Prevenir que el scroll se propague al iframe
+       
         document.addEventListener('DOMContentLoaded', function() {
             const iframe = document.querySelector('.model-3d');
             iframe.addEventListener('mouseenter', function() {
