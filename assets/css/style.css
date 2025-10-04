@@ -88,7 +88,7 @@
         }
         
         .menu-content a:hover {
-            color: #00b4ff;
+            color: #ffffff;
             transform: translateX(-10px);
         }
         
@@ -152,20 +152,28 @@
             letter-spacing: 1px;
         }
 
-        .comenzar-btn {
-            background-color: transparent;
-            text-decoration: none;
-            color: white;
-            border: 2px solid white;
-            padding: 12px 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Orbitron', sans-serif;
-            margin-top: 10px;
-            border-radius: 25px; 
+       .comenzar-btn {
+    background-color: transparent;
+    text-decoration: none;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 10px;
+    border-radius: 25px;
+}
+
+    .comenzar-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
 }
 
         .cta-button:hover {
@@ -176,7 +184,7 @@
         
         .info-section {
             height: 100vh;
-            background-color: #111;
+            background-color: #0f0f0f;
             color: white;
             display: flex;
             justify-content: center;
@@ -186,7 +194,7 @@
         }
         .info-section2 {
             height: 100vh;
-            background-color: #030303;
+            background-color: #080808;
             color: white;
             display: flex;
             justify-content: center;
@@ -207,4 +215,117 @@
         .info-content p {
             font-size: 1.2rem;
             line-height: 1.6;
+        }
+                .story-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .story-title {
+            color: #fffae7;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px rgba(212, 209, 198, 0.5);
+        }
+        
+        .story-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+            text-align: justify;
+        }
+        
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-quote {
+            font-style: italic;
+            color: #ffffff;
+            border-left: 3px solid #ffffff;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .story-highlight {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .story-icon {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        
+        .chapter-title {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+      .nav-btn {
+        padding: 10px 20px;
+        background: transparent;
+        color: #ffffff;
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+    }
+
+    .nav-btn:hover {
+        background: #ffffff;
+        color: #000000;
+        border-color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .nav-btn:disabled {
+        background: #666;
+        color: #999;
+        border-color: #666;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+        
+        @media (max-width: 768px) {
+            .story-container {
+                padding: 1rem;
+            }
+            
+            .story-title {
+                font-size: 1.8rem;
+            }
+            
+            .story-content {
+                font-size: 1rem;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
         }
