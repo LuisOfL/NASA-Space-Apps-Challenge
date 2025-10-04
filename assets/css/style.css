@@ -154,6 +154,7 @@
 
         .comenzar-btn {
             background-color: transparent;
+            text-decoration: none;
             color: white;
             border: 2px solid white;
             padding: 12px 30px;
@@ -169,6 +170,7 @@
 
         .cta-button:hover {
             background-color: white;
+            text-decoration: none;
             color: black;
         }
         
