@@ -28,18 +28,18 @@
         </div>
     </div>
 
-    <div id="inicio" class="video-container">
-        <video id="background-video" autoplay muted loop>
-            <source src="assets/videos/banner2.mp4" type="video/mp4">
+    <section id="inicio" class="scrolly-video">
+        <video id="svVideo" playsinline muted preload="auto">
+            <source src="assets/videos/Llamarada2.mp4" type="video/mp4">
         </video>
-        
+
         <div class="content">
             <h1 class="logo">Capi el astronauta</h1>
             <p class="tagline">¡El sueño imposible!</p>
             <a href="#capitulo1" class="comenzar-btn">Comenzar</a>
         </div>
-    </div>
-    
+    </section>
+
 
     <!-- Capítulo 1-->
     <section id="capitulo1" class="info-section2">
@@ -198,5 +198,95 @@
             }
         });
     </script>
+    <script>
+        (() => {
+        const section = document.getElementById('inicio');  // <section class="scrolly-video" id="inicio">
+        const video   = document.getElementById('svVideo'); // <video id="svVideo">
+        let duration  = 0;
+
+        // Medidas de la sección
+        let sectionTop   = 0;
+        let sectionHeight= 0;
+        let viewportH    = window.innerHeight;
+
+        const measure = () => {
+            sectionTop    = section.offsetTop;
+            sectionHeight = section.offsetHeight;
+            viewportH     = window.innerHeight;
+        };
+        measure();
+        new ResizeObserver(measure).observe(section);
+        window.addEventListener('resize', measure);
+
+        // Carga duración y evita autoplay
+        video.addEventListener('loadedmetadata', () => {
+            duration = video.duration || 0;
+            video.pause();
+        });
+
+        // Progreso por scroll (0..1) dentro de la sección
+        const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
+
+        const progressFromScroll = () => {
+        // progreso = (cuánto has entrado a la sección) / (lo que realmente puedes recorrer con el sticky)
+        // Cuando el top de la sección coincide con el top del viewport => progreso 0
+        // Cuando el bottom de la sección coincide con el bottom del viewport => progreso 1
+            const scrollY = window.scrollY;
+            const start   = sectionTop;
+            const travel  = Math.max(1, sectionHeight - viewportH); // evita división por 0
+            const p       = (scrollY - start) / travel;
+            return clamp(p, 0, 1);
+        };
+
+
+        // Lerp suave hacia el targetTime
+        let targetTime = 0;
+        let rafId;
+
+        const tick = () => {
+            if (duration > 0) {
+                // Snap a los bordes para asegurar 0s y duración exactos
+                if (targetTime < 0.02) {
+                if (video.currentTime !== 0) video.currentTime = 0;
+                } else if (targetTime > duration - 0.02) {
+                if (video.currentTime !== duration) video.currentTime = duration;
+                } else {
+                // Interpolación suave
+                const factor = 0.22; // ajusta a gusto
+                const diff   = targetTime - video.currentTime;
+                if (Math.abs(diff) > 0.002) {
+                    video.currentTime += diff * factor;
+                }
+                }
+            }
+            rafId = requestAnimationFrame(tick);
+        };
+
+
+        const onScroll = () => {
+            const p = progressFromScroll();
+            if (duration > 0) targetTime = p * duration;
+        };
+
+        // Accesibilidad: reduce motion
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const applyReduce = () => {
+            if (prefersReduce.matches) {
+            cancelAnimationFrame(rafId);
+            window.removeEventListener('scroll', onScroll);
+            video.currentTime = 0;
+            video.pause();
+            } else {
+            if (!rafId) rafId = requestAnimationFrame(tick);
+            window.addEventListener('scroll', onScroll, { passive:true });
+            onScroll(); // set inicial
+            }
+        };
+        prefersReduce.addEventListener?.('change', applyReduce);
+
+        applyReduce();
+        })();
+    </script>
+
 </body>
 </html>
