@@ -6,7 +6,6 @@
     <title>Clima Solar - NASA Space Challenge</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
@@ -52,6 +51,12 @@
                     <p>Había una vez un pequeño capibara llamado <span class="story-highlight">Capi</span>, que vivía en un pueblo. 
                        Capi era curioso, le encantaba mirar las estrellas todas las noches. Soñaba con tocar las estrellas algún día.
                     </p>
+                    
+                    <div class="material-button-container">
+                        <button class="comenzar-btn" onclick="openMaterialModal('https://my.spline.design/moonparallax-A5SjHc7nl9CDs13PI8qxvqGb/')">
+                             Ver Material 3D
+                        </button>
+                    </div>
                 </div>
                 <div class="navigation-buttons">
                     <button class="nav-btn" onclick="window.location.href='#1'" style="visibility: hidden;">Anterior</button>
@@ -73,6 +78,12 @@
                     <p class="story-quote">"Ya lo verás" —respondió Capi, decidido.</p>
                     <p>Pasaron los años, y Capi estudió mucho. Siempre interesado en los fenómenos espaciales, 
                         entró a la mejor universidad del mundo y ganó muchos concursos.</p>
+                    
+                    <div class="material-button-container">
+                        <button class="comenzar-btn" onclick="openMaterialModal('https://my.spline.design/timeliquid-78Ah6wW1rGMtBQFAG1Oay9Y2/')">
+                             Ver Material 3D    (Presiona E)
+                        </button>
+                    </div>
                 </div>
                 <div class="navigation-buttons">
                     <button class="nav-btn" onclick="window.location.href='#capitulo1'">Capítulo Anterior</button>
@@ -96,9 +107,8 @@
                         solar es una explosión repentina y muy intensa de energía en la superficie del Sol, causada 
                         por la liberación de energía acumulada en su campo magnético.</p>
                     
-           
                     <div class="material-button-container">
-                        <button class="comenzar-btn" onclick="openMaterialModal()">
+                        <button class="comenzar-btn" onclick="openMaterialModal('https://my.spline.design/interactivespaceshipscene-9Izbi3UKp93vHKmSUF0FMXLz/')">
                              Ver Material 3D
                         </button>
                     </div>
@@ -124,6 +134,12 @@
                     <p class="story-quote">"Repito, vuelve"</p>
                     <p>Capi corrió, estaba muy lejos de la nave, corrió y corrió, pero justo cuando iba a llegar vio a lo lejos algo moviéndose.</p>
                     <p>Era su compañero de viaje Don Tortuga.</p>
+                    
+                    <div class="material-button-container">
+                        <button class="comenzar-btn" onclick="openMaterialModal('https://my.spline.design/astarlikeourown-zYeB2LPjeIUpxyEHn2eONDQb/')">
+                             Ver Material 3D
+                        </button>
+                    </div>
                 </div>
                 <div class="navigation-buttons">
                     <button class="nav-btn" onclick="window.location.href='#capitulo3'">Capítulo Anterior</button>
@@ -143,6 +159,7 @@
                     <p>Capi tenía que decidir si entrar a la nave o salvar a su compañero, tenía el tiempo medido.</p>
                     <p>Capi decidió salvar a su compañero tortuga, Capi sabía que no saldría con vida, pero igual lo intentó.</p>
                     <p>Capi lo ayudó a correr.</p>
+                    </div>
                 </div>
                 <div class="navigation-buttons">
                     <button class="nav-btn" onclick="window.location.href='#capitulo4'">Capítulo Anterior</button>
@@ -179,6 +196,12 @@
                     <p>Volvió a la tierra advirtio a la agencia espacial de los problemas con el clima espacial y como le afecto
                         como un héroe y el primer capibara en volver del espacio en la historia.</p>
                     <p>Capi había cumplido un sueño que parecía imposible, ese día les demostró que la perseverancia lo puede todo.</p>
+                    
+                    <div class="material-button-container">
+                        <button class="comenzar-btn" onclick="openMaterialModal('https://my.spline.design/fireworks-Sxdcen6eotaILUj8N1XIn2N4/')">
+                             Ver Material 3D
+                        </button>
+                    </div>
                 </div>
                 <div class="navigation-buttons">
                     <button class="nav-btn" onclick="window.location.href='#capitulo6'">Capítulo Anterior</button>
@@ -191,12 +214,13 @@
     <div id="materialModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Modelo 3D - llamarada Solar</h3>
+                <h3 id="modalTitle">Modelo 3D</h3>
                 <button class="close-btn" onclick="closeMaterialModal()">&times;</button>
             </div>
             <div class="modal-body">
                 <iframe 
-                    src="https://my.spline.design/astarlikeourown-zYeB2LPjeIUpxyEHn2eONDQb/" 
+                    id="modelFrame"
+                    src="" 
                     class="model-3d"
                     frameborder="0"
                     allowfullscreen>
@@ -232,43 +256,44 @@
             }
         });
 
-        // Variables para controlar el scroll
+        
         let scrollPosition = 0;
 
-        // Funciones para el modal del material 3D
-        function openMaterialModal() {
+        function openMaterialModal(modelUrl) {
             const modal = document.getElementById('materialModal');
+            const modelFrame = document.getElementById('modelFrame');
             const body = document.body;
             
-            // Guardar la posición actual del scroll
+            modelFrame.src = modelUrl;
+            
+
             scrollPosition = window.pageYOffset;
             
-            // Agregar clase para deshabilitar el scroll
+        
             body.classList.add('modal-open');
-            
-            // Posicionar el body en la posición guardada
+          
             body.style.top = `-${scrollPosition}px`;
-            
-            // Mostrar el modal
+  
             modal.style.display = 'block';
         }
 
         function closeMaterialModal() {
             const modal = document.getElementById('materialModal');
+            const modelFrame = document.getElementById('modelFrame');
             const body = document.body;
-            
-           
+
             modal.style.display = 'none';
-      
-            body.classList.remove('modal-open');
+    
+            modelFrame.src = '';
             
+  
+            body.classList.remove('modal-open');
+
             window.scrollTo(0, scrollPosition);
             
-           
             body.style.top = '';
         }
 
-      
         window.onclick = function(event) {
             const modal = document.getElementById('materialModal');
             if (event.target === modal) {
@@ -282,7 +307,6 @@
             }
         });
 
-       
         document.addEventListener('DOMContentLoaded', function() {
             const iframe = document.querySelector('.model-3d');
             iframe.addEventListener('mouseenter', function() {
